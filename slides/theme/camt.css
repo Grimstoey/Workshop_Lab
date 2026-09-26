@@ -1,0 +1,229 @@
+/* @theme camt */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --ink: #1d2433;
+  --muted: #5b6475;
+  --accent: #7b2d8e; /* CMU purple */
+  --accent-soft: #f3e9f6;
+  --green: #1f7a4d;
+  --red: #b3261e;
+  --amber: #9a6700;
+  --paper: #ffffff;
+  --code-bg: #f6f7f9;
+  --rule: #d9dde4;
+}
+
+section {
+  font-family: 'IBM Plex Sans Thai', 'Sarabun', 'Noto Sans Thai', system-ui, sans-serif;
+  font-size: 26px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 56px 72px;
+  justify-content: flex-start;
+}
+
+section h1 {
+  font-size: 44px;
+  color: var(--accent);
+  margin: 0 0 0.4em;
+}
+
+section h2 {
+  font-size: 36px;
+  color: var(--accent);
+  margin: 0 0 0.5em;
+  padding-bottom: 0.2em;
+  border-bottom: 3px solid var(--accent-soft);
+}
+
+section h3 {
+  font-size: 28px;
+  color: var(--ink);
+  margin: 0.4em 0 0.3em;
+}
+
+section strong {
+  color: var(--accent);
+}
+
+section code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.88em;
+  background: var(--code-bg);
+  border-radius: 4px;
+  padding: 0.05em 0.3em;
+}
+
+section pre {
+  font-size: 19px;
+  line-height: 1.4;
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.7em 0.9em;
+}
+
+section pre code {
+  background: none;
+  padding: 0;
+  font-size: 1em;
+}
+
+section table {
+  font-size: 21px;
+  border-collapse: collapse;
+}
+
+section th {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+section th,
+section td {
+  border: 1px solid var(--rule);
+  padding: 0.3em 0.6em;
+}
+
+section blockquote {
+  border-left: 6px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink);
+  margin: 0.6em 0;
+  padding: 0.5em 1em;
+}
+
+section header,
+section footer {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+section::after {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* Title slide of a deck */
+section.title {
+  justify-content: center;
+  background: linear-gradient(135deg, #ffffff 55%, var(--accent-soft));
+}
+
+section.title h1 {
+  font-size: 56px;
+}
+
+section.title p {
+  color: var(--muted);
+}
+
+/* Section divider */
+section.divider {
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+}
+
+section.divider h1,
+section.divider h2,
+section.divider strong {
+  color: #fff;
+  border: none;
+}
+
+section.divider p {
+  color: #eadcf0;
+  font-size: 30px;
+}
+
+/* Lab slide */
+section.lab {
+  background: #f4faf6;
+  border-left: 16px solid var(--green);
+}
+
+section.lab h2 {
+  color: var(--green);
+  border-bottom-color: #d4ecdd;
+}
+
+/* Denser slides for code-heavy content */
+section.dense {
+  font-size: 22px;
+}
+
+section.dense pre {
+  font-size: 17px;
+}
+
+/* Two columns: wrap each column in <div> */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2em;
+  align-items: start;
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+  align-items: start;
+}
+
+.ok {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.bad {
+  color: var(--red);
+  font-weight: 600;
+}
+
+.warn {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.78em;
+}
+
+.center {
+  text-align: center;
+}
+
+.card {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 0.5em 0.8em;
+  background: #fff;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.7em;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+svg text {
+  font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
+}

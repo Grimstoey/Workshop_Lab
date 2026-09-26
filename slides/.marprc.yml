@@ -1,0 +1,4 @@
+themeSet: ./theme
+# Decks use inline HTML/SVG for diagrams and column layouts.
+html: true
+allowLocalFiles: true
