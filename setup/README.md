@@ -1,6 +1,6 @@
 # เตรียมเครื่องก่อน Workshop (Setup Guide)
 
-Workshop: **Automated Testing in Real Industry** — 3–4 ตุลาคม 2026
+Workshop: **Software Testing in Real Industry** — hands-on automated testing workshop & readiness checklist · 3–4 ตุลาคม 2026
 
 > ⏰ **ส่งภายใน วันพฤหัสบดีที่ 1 ตุลาคม 2026**
 > 1. Screenshot ผลของ `npm run doctor` ที่ขึ้น ✅ READY
@@ -42,7 +42,7 @@ docker compose version   # ต้องเป็น v2 ขึ้นไป (ค�
 ## 2. Clone repo และรัน doctor
 
 ```bash
-git clone <REPO_URL> testing-workshop
+git clone https://github.com/boyone/camt-software-testing.git testing-workshop
 cd testing-workshop/app
 npm ci
 npm run doctor
