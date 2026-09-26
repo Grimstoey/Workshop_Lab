@@ -35,7 +35,26 @@ services:
       timeout: 3s
       retries: 30
 
-  # Schema migrations. Defaults target db-test; npm scripts override for dev.
+  # Database behind the app container for end-to-end tests. Recreated on every
+  # `npm run test:e2e`, so it never shares state with the integration tests.
+  db-e2e:
+    image: postgres:17-alpine
+    profiles: ["e2e"]
+    environment:
+      POSTGRES_USER: election
+      POSTGRES_PASSWORD: election
+      POSTGRES_DB: election_e2e
+    ports:
+      - "5434:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U election -d election_e2e"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  # Schema migrations. Defaults target db-test; npm scripts override for dev and e2e.
   liquibase:
     build: ./db
     profiles: ["tools"]
@@ -52,13 +71,13 @@ services:
     build: .
     profiles: ["e2e"]
     environment:
-      DATABASE_URL: postgres://election:election@db-test:5432/election_test
+      DATABASE_URL: postgres://election:election@db-e2e:5432/election_e2e
       JWT_SECRET: e2e-secret
       PORT: "3000"
     ports:
       - "3000:3000"
     depends_on:
-      db-test:
+      db-e2e:
         condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:3000/health || exit 1"]

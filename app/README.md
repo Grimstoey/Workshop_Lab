@@ -14,7 +14,8 @@ Express + TypeScript + Postgres, schema versioned with Liquibase.
 | `npm run db:reset:test` | Recreate the test database from scratch |
 | `npm run test:unit` | Jest `unit` project — no I/O, parallel |
 | `npm run test:integration` | Starts db-test, runs Liquibase, then Jest `integration` project in band |
-| `npm run test:e2e` | db-test + Liquibase + app container, then Playwright API tests |
+| `npm run db:up:e2e` / `db:migrate:e2e` | Fresh e2e Postgres (port 5434, recreated every run) + migrations with bootstrap accounts |
+| `npm run test:e2e` | Fresh db-e2e + Liquibase + app container, then Playwright API tests |
 | `npm run typecheck` | `tsc --noEmit` over src, tests and e2e |
 
 ## Test boundaries in this repo
@@ -29,7 +30,7 @@ Express + TypeScript + Postgres, schema versioned with Liquibase.
 
 - Changelogs: `db/changelog/changes/NNN-*.sql` (Liquibase *formatted SQL*), included in order by `db.changelog-master.yaml`.
 - Never edit a changeset that has already run anywhere — add a new file.
-- `context:dev` changesets are demo data for local development only. Tests run with `--contexts=test`, so they never see it.
+- `context:dev` changesets are demo data for local development only; `context:e2e` changesets bootstrap the admin/commissioner accounts of the e2e environment. Integration tests run with `--contexts=test`, so they see neither.
 - Liquibase runs from our own image (`db/Dockerfile`, changelog baked in), so the same command works on laptops and on every CI.
 
 Handy commands (run against the test DB by default):
