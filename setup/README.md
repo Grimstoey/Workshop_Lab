@@ -59,6 +59,12 @@ Checks   : 9/9 passed
 
 📸 **Screenshot หน้านี้ส่งให้ผู้ประสานงาน**
 
+จากนั้นรัน end-to-end test 1 ครั้ง เพื่อ build Docker image ของระบบไว้ล่วงหน้า (~3–5 นาทีครั้งแรก):
+
+```bash
+npm run test:e2e     # ต้องจบด้วย "1 passed"
+```
+
 ---
 
 ## 3. (ไม่บังคับ) ลองรันระบบ

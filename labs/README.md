@@ -11,7 +11,7 @@ git switch jest/lab/02-aaa-unit          # เริ่ม lab
 git switch jest/solution/02-aaa-unit     # ดูเฉลย / ตามไม่ทัน → ไป lab ถัดไปได้เลย
 ```
 
-> ตามไม่ทันไม่เป็นไร: `git stash` งานตัวเอง แล้ว `git switch jest/lab/<lab ถัดไป>` ได้ทันที
+> ตามไม่ทันไม่เป็นไร: `git stash -u` งานตัวเอง (`-u` เพื่อเก็บไฟล์ใหม่ที่สร้างด้วย) แล้ว `git switch jest/lab/<lab ถัดไป>` ได้ทันที
 > เพราะทุก lab เริ่มจากเฉลยของ lab ก่อนหน้า
 
 | # | Lab | ช่วงเวลา | เรื่อง | Reference |
