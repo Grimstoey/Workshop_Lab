@@ -1,6 +1,7 @@
 # Facilitator Guide
 
-Workshop: **Automated Testing in Real Industry** · CMU CAMT · ส.–อา. 3–4 ตุลาคม 2026 · 09:00–16:30
+Workshop: **Software Testing in Real Industry** — hands-on automated testing workshop & readiness checklist
+CMU CAMT · ส.–อา. 3–4 ตุลาคม 2026 · 09:00–16:30
 ผู้เรียน: นักศึกษา ป.โท ~9 คน + ป.ตรี 2–3 คน ที่เคยเขียนระบบเลือกตั้งในวิชา backend
 
 | ไฟล์ | ใช้เมื่อไหร่ |

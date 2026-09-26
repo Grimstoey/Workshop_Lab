@@ -2,7 +2,7 @@
 marp: true
 theme: camt
 paginate: true
-header: 'Automated Testing Workshop · CMU CAMT · 3–4 ต.ค. 2026'
+header: 'Software Testing in Real Industry · CMU CAMT · 3–4 ต.ค. 2026'
 footer: '01 · Why & Test Boundaries'
 ---
 
@@ -11,11 +11,11 @@ footer: '01 · Why & Test Boundaries'
 <!-- _header: '' -->
 <!-- _footer: '' -->
 
-# Automated Testing ในงานจริง
+# Software Testing in Real Industry
 
-### จากระบบเลือกตั้งที่เราเขียนกันมาแล้ว
+### Hands-on automated testing workshop & readiness checklist
 
-Workshop 2 วัน · CMU CAMT · 3–4 ตุลาคม 2026
+บนระบบเลือกตั้งที่เราเขียนกันมาแล้ว · CMU CAMT · 3–4 ตุลาคม 2026
 
 <span class="tag">Day 1 · เช้า</span>
 

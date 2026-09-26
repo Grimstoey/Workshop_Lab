@@ -2,7 +2,7 @@
 marp: true
 theme: camt
 paginate: true
-header: 'Automated Testing Workshop · CMU CAMT · 3–4 ต.ค. 2026'
+header: 'Software Testing in Real Industry · CMU CAMT · 3–4 ต.ค. 2026'
 footer: '04 · Test Data Management'
 ---
 
