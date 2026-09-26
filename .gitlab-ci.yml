@@ -1,0 +1,65 @@
+# GitLab CI version (gitlab-runner, docker executor).
+# Same npm scripts as local and GitHub Actions.
+#
+# Runner requirement: docker-in-docker needs `privileged = true` in the
+# runner's config.toml ([runners.docker] section).
+#
+# In docker-in-docker the containers run inside the `docker` service,
+# so ports published by compose are reached at host "docker", not localhost.
+
+stages: [unit, integration, e2e]
+
+default:
+  image: node:24-alpine
+  cache:
+    key:
+      files: [app/package-lock.json]
+    paths: [app/.npm/]
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/app/.npm"
+
+.npm-install: &npm-install
+  - cd app
+  - npm ci
+
+# Jobs that need Docker Compose (Postgres, Liquibase, the app container).
+.with-docker:
+  services:
+    - name: docker:29-dind
+      alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - apk add --no-cache docker-cli docker-cli-compose
+    - until docker info >/dev/null 2>&1; do sleep 1; done
+    - *npm-install
+
+unit:
+  stage: unit
+  before_script: *npm-install
+  script:
+    - npm run typecheck
+    - npm run test:unit
+
+integration:
+  stage: integration
+  extends: .with-docker
+  variables:
+    DATABASE_URL: postgres://election:election@docker:5433/election_test
+  script:
+    - npm run test:integration
+
+e2e:
+  stage: e2e
+  extends: .with-docker
+  variables:
+    E2E_BASE_URL: http://docker:3000
+  script:
+    - npm run test:e2e
+  after_script:
+    - cd app && docker compose --profile e2e logs app || true
+  artifacts:
+    when: on_failure
+    paths: [app/playwright-report/]
