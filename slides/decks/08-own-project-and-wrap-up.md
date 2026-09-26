@@ -169,5 +169,5 @@ createApp(pgDeps(pool, tokens)).listen(config.port);
 
 ### คำถาม · Feedback
 
-Repo: `<REPO_URL>`
+Repo: `github.com/boyone/camt-software-testing`
 

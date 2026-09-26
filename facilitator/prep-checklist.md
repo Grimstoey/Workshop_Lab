@@ -6,8 +6,8 @@
 |---|---|---|---|
 | ส. 26 ก.ย. | facilitator | lab branches ครบ, slides, facilitator guide | ✅ |
 | อา. 27 ก.ย. | ตุ้ย | ส่ง survey (stack ที่ใช้ในโปรเจกต์) + template test case (Given / When / Then) | ☐ |
-| จ. 28 ก.ย. | facilitator | ตัดสินใจที่ host repo (GitHub / GitLab / server คณะ) และจะเปิด `solution/*` ตั้งแต่แรกหรือไม่ | ☐ |
-| อ. 29 ก.ย. | facilitator | push repo · แทน `<REPO_URL>` ใน `setup/README.md` และสไลด์สุดท้ายของ deck 08 · ส่ง setup guide | ☐ |
+| จ. 28 ก.ย. | facilitator | host repo: GitHub `boyone/camt-software-testing` (URL ใส่ใน `setup/README.md` และ deck 08 แล้ว) ✅ · ตัดสินใจว่าจะเปิด `solution/*` ตั้งแต่แรกหรือไม่ | ☐ |
+| อ. 29 ก.ย. | facilitator | push repo (`git push -u origin --all`) · ตั้ง repo เป็น public หรือเพิ่มผู้เรียนเป็น collaborator · ส่ง setup guide | ☐ |
 | พฤ. 1 ต.ค. | ผู้เรียน | ส่ง screenshot `npm run doctor` ✅ + test cases | ☐ |
 | พฤ. 1 ต.ค. | facilitator | ไล่ตามคนที่ doctor ยังไม่ผ่าน (ดู [troubleshooting](troubleshooting.md)) · อ่าน survey → เตรียมกลุ่มตาม stack สำหรับ Lab 08 | ☐ |
 | ศ. 2 ต.ค. | facilitator | dry run (ด้านล่าง) · เตรียม offline kit | ☐ |
