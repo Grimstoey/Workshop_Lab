@@ -38,7 +38,11 @@ jest/lab/NN-name              จุดเริ่มต้นของ lab NN
 jest/solution/NN-name         เฉลย lab NN = จุดเริ่มต้นของ lab NN+1
 demo/testcontainers           จาก solution/04
 demo/playwright-browser       จาก solution/06
-vitest/*                      (หลัง workshop)
+vitest/lab|solution/NN-name   ชุดเดียวกันบน Vitest 5 + TypeScript 7 (ไม่ได้สอนในห้อง)
+vitest/demo/*                 demo ทั้ง 2 ตัวบน Vitest
 ```
+
+ชุด `vitest/*` ใช้ตอบคนที่โปรเจกต์ใช้ Vitest — ตารางแปลงอยู่ที่ `labs/jest-vs-vitest.md`
+ต่างจากชุด Jest ที่ผู้สอนควรรู้: Vitest ไม่ตรวจ type (script รัน `tsc --noEmit` ก่อน) และ **ไม่เตือน** เมื่อ legacy pool ไม่ถูกปิด (ไม่มี "Jest did not exit")
 
 Slides และ facilitator guide อยู่บน `main` เท่านั้น — ไม่อยู่บน lab branch

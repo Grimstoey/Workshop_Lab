@@ -26,4 +26,4 @@ git switch jest/solution/02-aaa-unit     # ดูเฉลย / ตามไม�
 | 07 | `07-legacy` | Day 2 บ่าย | Characterization tests, seams, sprout | Working Effectively with Legacy Code |
 | 08 | `08-own-project` | Day 2 บ่าย | นำทุกอย่างไปใช้กับโปรเจกต์ตัวเอง | — |
 
-Vitest version (`vitest/lab/NN-*`, `vitest/solution/NN-*`) จะตามมาหลัง workshop
+ใช้ Vitest? lab ชุดเดียวกันบน **Vitest 5 + TypeScript 7** อยู่ที่ `vitest/lab/NN-*`, `vitest/solution/NN-*` → ตารางแปลง [jest-vs-vitest.md](jest-vs-vitest.md)

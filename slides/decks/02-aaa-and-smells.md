@@ -247,6 +247,57 @@ npx jest test/unit/passwords.test.ts
 
 ---
 
+<!-- _class: dense -->
+
+## ไม่ได้ใช้ Jest? — Vitest ใช้ได้เหมือนกัน
+
+<div class="cols">
+<div>
+
+**เหมือนเดิม** — cheat sheet หน้าที่แล้วใช้ได้ทั้งหน้า
+`describe` · `it.each` · `it.todo` · hooks · `expect` ทุก matcher
+
+**เปลี่ยนแค่นี้**
+
+```ts
+import { describe, expect, it, vi } from 'vitest';
+
+vi.fn() · vi.spyOn() · vi.useFakeTimers()   // jest.* → vi.*
+```
+
+```bash
+npx vitest                      # watch เป็นค่าเริ่มต้น
+npx vitest run --project unit   # = jest --selectProjects unit
+```
+
+</div>
+<div>
+
+**ต่างกันจริง ๆ**
+
+- Vitest **ไม่ตรวจ type** → รัน `tsc --noEmit` ก่อน
+  (TypeScript 7 ทั้ง project < 1 วินาที)
+- ts-jest ใช้กับ **TypeScript 7** ไม่ได้ — Vitest ได้
+- รัน ESM ได้เลย (เช่น faker v10)
+
+**Lab ชุดเดียวกันบน Vitest + TS 7**
+
+```text
+vitest/lab/NN-*
+vitest/solution/NN-*
+labs/jest-vs-vitest.md   ← ตารางแปลงครบ
+```
+
+</div>
+</div>
+
+<!--
+~1 นาที สำหรับคนที่โปรเจกต์ใช้ Vitest อยู่แล้ว หรือจะเริ่มใหม่ — ในห้องยังใช้ branch jest/* ทั้งหมด
+ถ้ามีคนถาม "ควรใช้ตัวไหน": หลักการทุกอย่างใน workshop เหมือนกัน เลือกตามที่ทีม/โปรเจกต์ใช้อยู่
+-->
+
+---
+
 <!-- _class: lab -->
 
 ## Lab 02 — AAA & Test Smells (~45 นาที)

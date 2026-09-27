@@ -57,6 +57,7 @@ templates อยู่ที่ `labs/08-own-project/templates/` (branch `jest/l
 | เป็น **JavaScript** (ไม่ใช่ TS) | ไม่ต้องใช้ `ts-jest` — ลบ `transform` ออก |
 | มี **migration อยู่แล้ว** (Prisma, Sequelize, TypeORM, Knex) | ใช้ของเดิม — สำคัญแค่ test DB ต้อง **สร้างจาก migration อัตโนมัติ** |
 | ใช้ **MongoDB** | `mongo:7` ใน compose · ล้างด้วย `deleteMany({})` ต่อ collection |
+| ใช้ **Vitest** (หรืออยากใช้ TypeScript 7) | templates จาก branch `vitest/lab/08-own-project` |
 | **สร้าง app และ `listen()` ในไฟล์เดียว** | seam แรกที่ต้องสร้าง ↓ |
 
 ```ts
@@ -149,7 +150,7 @@ createApp(pgDeps(pool, tokens)).listen(config.port);
 
 ## หลัง workshop
 
-- **Vitest version** — branch set `vitest/lab/*`, `vitest/solution/*` + cheat sheet Jest ↔ Vitest
+- **Vitest + TypeScript 7** — lab ชุดเดียวกันที่ branch `vitest/*` + `labs/jest-vs-vitest.md`
 - ทำข้อที่ได้ 0 ใน checklist ที่แก้ได้ใน 1 วัน
 - เพิ่ม characterization test **ก่อน** แก้โค้ดเก่าทุกครั้ง
 - ให้ CI รัน test ของโปรเจกต์ตัวเองทุก push

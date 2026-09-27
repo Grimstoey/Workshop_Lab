@@ -47,6 +47,9 @@
 - เฉลย: `jest/solution/01-boundaries` → `labs/01-boundaries/answer-key.md` — เปิดเฉพาะหลังทุกคู่ส่งคำตอบ
 - ✂️ Part B ให้ทำ 5 ข้อแทนทั้งหมด
 
+**11:15 AAA & Test Smells**
+- สไลด์ "ไม่ได้ใช้ Jest?" หลัง cheat sheet ~1 นาที: ถามว่าโปรเจกต์ใครใช้ Vitest อยู่ ชี้ `vitest/*` + `labs/jest-vs-vitest.md` แล้วไปต่อ — ในห้องใช้ `jest/*` ทุกคน
+
 **11:30 Lab 02**
 - ชี้ให้เห็นว่า `lab02-smelly.test.ts` **ผ่าน** — test ที่ผ่านไม่ได้แปลว่าดี
 - ตอนให้ `hashPassword` คืน plain text: error ที่ได้คือ `expected ... not to be ...` ที่ไม่บอกว่าข้อไหน → Assertion Roulette
@@ -131,7 +134,7 @@ npm run test:e2e     # build app image ครั้งแรก — ต้อง
 
 **16:15 ปิด**
 - ให้แต่ละคนบอก **คะแนน Checklist รอบ 1 → รอบ 2** และ 1 ข้อที่จะทำก่อน
-- ส่ง feedback form (ตุ้ยเตรียม) · แจ้งว่า Vitest version จะตามมา
+- ส่ง feedback form (ตุ้ยเตรียม) · ย้ำว่ามีชุด Vitest + TypeScript 7 (`vitest/*`) สำหรับโปรเจกต์ที่ใช้ Vitest
 
 ---
 
