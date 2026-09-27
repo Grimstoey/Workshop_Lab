@@ -117,7 +117,7 @@ npm run test:e2e     # build app image ครั้งแรก — ต้อง
 - ✂️ Step 6 (refactor) เป็นการบ้าน
 - ตามไม่ทันเกิน 1 step: `git stash -u` แล้วดูไฟล์ของ step นั้นใน `jest/solution/06-outside-in` ได้ (`git show jest/solution/06-outside-in:app/<path>`)
 
-**11:50 Browser demo** — เตรียม `npx playwright install chromium` ไว้ในเครื่อง facilitator แล้ว · รัน `--headed --slow-mo=500` ให้ห้องเห็น
+**11:50 Browser demo** — เตรียม `npx playwright install chromium` ไว้ในเครื่อง facilitator แล้ว · รัน `SLOW_MO=500 npm run test:e2e -- e2e/browser --headed` ให้ห้องเห็น (ผ่าน `test:e2e` เสมอ — สร้าง e2e DB ใหม่ทุกครั้ง)
 
 **13:20 Lab 07**
 - ❓ ในไฟล์ test ต้องตอบก่อนเริ่ม — ให้รัน `npm run test:integration` **ทั้ง suite** จะเห็น "Jest did not exit" (legacy pool) → นี่คือ hook ของ Part B

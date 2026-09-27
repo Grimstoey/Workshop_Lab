@@ -33,7 +33,7 @@
    facilitator/verify-branches.sh
    ```
    ผลที่คาด: `tsc=ok` ทุก branch, ไม่มี `failed` · "did not exit" ขึ้นเฉพาะ `solution/04`–`06`, `lab/05`–`07` และ `demo/playwright-browser` (ตั้งใจ — Lab 07)
-3. **Demos**: `demo/testcontainers` → `npm run test:integration:tc` · `demo/playwright-browser` → `npx playwright install chromium` แล้ว `npx playwright test e2e/browser --headed`
+3. **Demos**: `demo/testcontainers` → `npm run test:integration:tc` · `demo/playwright-browser` → `npx playwright install chromium` แล้ว `SLOW_MO=500 npm run test:e2e -- e2e/browser --headed`
 4. **Slides**: `cd slides && npm install && npm run pdf` → เปิด PDF ทุกไฟล์ดูฟอนต์ไทย · ลอง presenter view (`npm run serve` → กด `P`)
 5. **จับเวลา** deck 01 (ควร ≤ 55 นาทีรวมช่วงเปิด) — ถ้าเกิน ตัดสไลด์ Contract test หรือ "…และสิ่งที่มัน *ไม่* ให้" เป็นพูดสั้น ๆ
 6. **ลองทำ Lab 06 Step 1–2 เอง** จาก `jest/lab/06-outside-in` โดยไม่ดูเฉลย — lab ที่ยาวที่สุด ต้องรู้ว่าติดตรงไหน
