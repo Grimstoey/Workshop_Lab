@@ -82,6 +82,7 @@ createApp(pgDeps(pool, tokens)).listen(config.port);
 
 ติดตรงไหน ถามตัวเอง
 
+- สิ่งนี้อยู่ใน **SUT / scope** ที่เขียนไว้ตอน Lab 01 ไหม?
 - ถ้าจะ test สิ่งนี้ ต้อง **ควบคุม** อะไรบ้าง? (เวลา, DB, token, service ภายนอก) → แต่ละอย่างคือ seam
 - test นี้ต้องการ database จริงไหม หรือ logic แยกออกมาได้?
 - ถ้า test นี้แดง ฉันจะรู้ไหมว่าอะไรพัง?

@@ -199,6 +199,122 @@ Automated test = ย้ายการค้นพบ bug **ไปทางซ�
 
 ---
 
+<!-- _class: dense -->
+
+## SUT ของ workshop: ระบบเลือกตั้งฉบับย่อ
+
+<svg viewBox="0 0 1100 250" width="100%">
+  <g font-size="19" font-weight="700" fill="#5b6475">
+    <text x="0" y="52">ทุกคน</text>
+    <text x="0" y="132">VOTER</text>
+    <text x="0" y="212">กกต. / ADMIN</text>
+  </g>
+  <g stroke-width="2">
+    <!-- ทุกคน -->
+    <rect x="160" y="15" width="220" height="60" rx="8" fill="#e8f3ed" stroke="#1f7a4d"/>
+    <rect x="395" y="15" width="220" height="60" rx="8" fill="#e8f3ed" stroke="#1f7a4d"/>
+    <rect x="630" y="15" width="220" height="60" rx="8" fill="#e8f3ed" stroke="#1f7a4d"/>
+    <rect x="865" y="15" width="220" height="60" rx="8" fill="#e8f3ed" stroke="#1f7a4d"/>
+    <!-- VOTER -->
+    <rect x="160" y="95" width="220" height="60" rx="8" fill="#fbeae9" stroke="#b3261e"/>
+    <rect x="395" y="95" width="220" height="60" rx="8" fill="#fbeae9" stroke="#b3261e"/>
+    <rect x="630" y="95" width="220" height="60" rx="8" fill="#fff" stroke="#b3261e" stroke-dasharray="8 5"/>
+    <!-- กกต. / ADMIN -->
+    <rect x="160" y="175" width="220" height="60" rx="8" fill="#e8f3ed" stroke="#1f7a4d"/>
+    <rect x="395" y="175" width="220" height="60" rx="8" fill="#e8f3ed" stroke="#1f7a4d"/>
+    <rect x="630" y="175" width="220" height="60" rx="8" fill="#e8f3ed" stroke="#1f7a4d"/>
+    <rect x="865" y="175" width="220" height="60" rx="8" fill="#fff" stroke="#9a6700" stroke-dasharray="8 5"/>
+  </g>
+  <g font-size="18" text-anchor="middle" font-weight="600" fill="#1d2433">
+    <text x="270" y="40">สมัครสมาชิก</text><text x="505" y="40">login</text>
+    <text x="740" y="40">ดูเขต · พรรค</text><text x="975" y="40">ผลรายเขต (ซ่อนคะแนน)</text>
+    <text x="270" y="120">ดูผู้สมัครในเขต</text><text x="505" y="120">ลงคะแนน / เปลี่ยน</text>
+    <text x="740" y="120">ห้ามลงหลังปิดหีบ</text>
+    <text x="270" y="200">สร้างพรรค</text><text x="505" y="200">เพิ่มผู้สมัคร</text>
+    <text x="740" y="200">เปลี่ยน role (ADMIN)</text><text x="975" y="200">ปิดหีบ → เปิดคะแนน</text>
+  </g>
+  <g font-size="14" text-anchor="middle" fill="#5b6475" font-family="JetBrains Mono, monospace">
+    <text x="270" y="63">POST /auth/register</text><text x="505" y="63">POST /auth/login</text>
+    <text x="740" y="63">GET /districts, /parties</text><text x="975" y="63">GET /districts/:id/results</text>
+    <text x="270" y="143">GET /me/candidates</text><text x="505" y="143">PUT /me/vote</text>
+    <text x="740" y="143">Lab 07 · 409</text>
+    <text x="270" y="223">POST /parties</text><text x="505" y="223">POST /districts/:id/candidates</text>
+    <text x="740" y="223">PATCH /admin/users/:id/role</text><text x="975" y="223">POST /districts/:id/close</text>
+  </g>
+</svg>
+
+<p class="small"><span class="ok">■ มีแล้ว</span> · <span class="warn">┅ ยังไม่มี — Day 2 เช้า สร้างแบบ outside-in (Lab 06)</span> · <span class="bad">■ legacy ไม่มี test — Day 2 บ่าย เอาเข้า test แล้วแก้ (Lab 07)</span></p>
+
+<div class="cols">
+<div>
+
+- เลขบัตรต้อง **checksum ถูก** · รหัสผ่าน ≥ 8 ตัว
+- VOTER เห็นและเลือกได้เฉพาะผู้สมัคร **ในเขตตัวเอง**
+- **1 คน 1 คะแนน** — เปลี่ยนได้จนกว่าจะปิดหีบ
+
+</div>
+<div>
+
+- คะแนน **ซ่อน** จนกว่าจะปิดหีบ
+- ในเขตเดียวกัน หมายเลขไม่ซ้ำ · 1 พรรค 1 ผู้สมัคร
+- สร้างพรรค / ผู้สมัคร = **กกต.** · เปลี่ยน role = **ADMIN**
+
+</div>
+</div>
+
+<p class="small muted">เล็กกว่าโปรเจกต์ของคุณโดยตั้งใจ — ฟีเจอร์ไม่ต้องเหมือน เทคนิคใช้ได้เหมือนกัน</p>
+
+<!--
+~2 นาที · ไม่ต้องสอนกฎ — ทุกคนเขียนระบบนี้มาแล้ว เป้าคือบอกว่า "เราจะ test อะไร"
+SUT = System Under Test — ตลอด 2 วัน SUT ใหญ่สุดคือ backend ตัวนี้ (app/) ทั้งตัว
+ชี้สีให้เห็นเป็นแผนที่ 2 วัน:
+- กรอบประเหลือง: ปิดหีบยังไม่มีจริง — เช้า Day 2 เราสร้างเองจาก acceptance test
+- แดง: voteRoutes.ts เขียนรีบก่อน demo ไม่มี test — บ่าย Day 2 เอาเข้า test ก่อนเพิ่มกฎ "ห้ามลงหลังปิดหีบ"
+กฎใต้แผนที่คือสิ่งที่ test ทั้งหมดจะ assert — "จนกว่าจะปิดหีบ" ยังเป็นแค่ spec จนถึง Day 2
+ถ้ามีคนถาม "ทำไมไม่มี X แบบในวิชา" → ตั้งใจให้เล็ก รายละเอียดเรื่อง stack ต่างกันอยู่ Lab 08
+-->
+
+---
+
+<!-- _class: dense -->
+
+## ขอบเขต: ทดสอบอะไร · ไม่ทดสอบอะไร
+
+### ✅ ทดสอบ — automated, functional
+
+<div class="cols">
+<div>
+
+- **พฤติกรรมผ่าน HTTP API** — status code, JSON, สิทธิ์ตาม role
+- **กฎทางธุรกิจ** ใน `services/` และ `domain/`
+
+</div>
+<div>
+
+- **SQL และ schema** — repositories กับ Postgres จริงที่สร้างจาก Liquibase
+- **การประกอบระบบ** — config, env, Dockerfile (ผ่าน e2e)
+
+</div>
+</div>
+
+### 🚫 ไม่ทดสอบใน workshop นี้
+
+| อะไร | ทำไม |
+|---|---|
+| Frontend / UI | ไม่มีใน repo — ดู demo Playwright browser 10 นาที Day 2 |
+| Load · Security · Usability | ต้องใช้เครื่องมือและทักษะอีกชุด — แค่รู้ว่าต้องมี |
+| Contract test | ต้องมี consumer คนละทีม / repo — พูดเป็น concept |
+| ระบบภายนอก (ทะเบียนราษฎร์, SMS) | ไม่มีในระบบนี้ — ถ้ามีจริงจะเป็น test double |
+| Manual / exploratory · QA process | workshop นี้ฝึก automated test เท่านั้น |
+
+<!--
+~2 นาที · ตาราง 🚫 ไม่ได้แปลว่าไม่สำคัญ — แค่ไม่ใช่เรื่องของ 2 วันนี้ (ย้อนกลับไปที่สไลด์ "...และสิ่งที่มันไม่ให้")
+Lab 01 worksheet มีข้อที่ตอบว่า X (ไม่ใช่ automated functional test) — มาจากตารางนี้
+ต่อไป: SUT ใหญ่สุดคือทั้งระบบ แต่แต่ละ test เลือก SUT ที่เล็กกว่านั้นได้ → Test Boundaries
+-->
+
+---
+
 <!-- _class: divider -->
 
 # What — Test Boundaries
@@ -222,15 +338,22 @@ Toby Clemson · *Testing Strategies in a Microservice Architecture*
     <line x1="180" y1="55" x2="228" y2="55"/><line x1="400" y1="55" x2="448" y2="55"/><line x1="620" y1="55" x2="668" y2="55"/><line x1="840" y1="55" x2="888" y2="55"/>
   </g>
   <g font-size="19" font-weight="600">
-    <line x1="450" y1="130" x2="620" y2="130" stroke="#1f7a4d" stroke-width="8"/><text x="630" y="137" fill="#1f7a4d">unit</text>
-    <line x1="670" y1="175" x2="1060" y2="175" stroke="#2f6fb3" stroke-width="8"/><text x="530" y="182" fill="#2f6fb3">integration</text>
-    <line x1="230" y1="220" x2="1060" y2="220" stroke="#9a6700" stroke-width="8"/><text x="10" y="227" fill="#9a6700">component</text>
+    <line x1="450" y1="130" x2="620" y2="130" stroke="#1f7a4d" stroke-width="8"/><text x="630" y="137" fill="#1f7a4d">SUT ของ unit</text>
+    <line x1="670" y1="175" x2="1060" y2="175" stroke="#2f6fb3" stroke-width="8"/><text x="655" y="182" fill="#2f6fb3" text-anchor="end">SUT ของ integration</text>
+    <line x1="230" y1="220" x2="1060" y2="220" stroke="#9a6700" stroke-width="8"/><text x="10" y="227" fill="#9a6700">SUT ของ component</text>
     <line x1="10" y1="265" x2="1060" y2="265" stroke="#b3261e" stroke-width="8"/>
-    <text x="10" y="305" fill="#b3261e">end-to-end — ผ่าน container จริง นอก process ของ test</text>
+    <text x="10" y="305" fill="#b3261e">SUT ของ end-to-end = ทั้งระบบ — ผ่าน container จริง นอก process ของ test</text>
   </g>
 </svg>
 
+แต่ละแถบคือ **SUT** ของ boundary นั้น — ยิ่ง SUT เล็ก แดงแล้วยิ่งรู้ตรงจุด <span class="muted small">(นิยามเต็มใน deck 02)</span>
+
 Dependency ที่ inject ได้: `TokenService` (JWT), `Clock` (เวลา), repositories — นี่คือจุดที่เราเสียบ test double ได้
+
+<!--
+SUT หดลงตาม boundary: e2e = ทั้งระบบ → component = app ใน process → integration = repository + DB → unit = service/function เดียว
+deck 02 จะนิยาม SUT แบบ xUnit Test Patterns: "สิ่งที่ test นี้ตั้งใจทดสอบ"
+-->
 
 ---
 
@@ -422,7 +545,7 @@ git switch jest/lab/01-boundaries      # โจทย์: labs/01-boundaries/REA
 | Part | ทำอะไร | เวลา |
 |---|---|---|
 | **A** | `worksheet.md` — 16 test cases ของระบบอ้างอิง → boundary ไหน เพราะอะไร | 20 นาที |
-| **B** | test cases ที่เตรียมมาของตัวเอง → เพิ่มคอลัมน์ boundary / double / data → วาดรูปร่าง suite | 25 นาที |
+| **B** | เริ่มด้วย 1 บรรทัด: **SUT ของโปรเจกต์คุณคืออะไร · อะไรอยู่นอก scope**<br>แล้ว test cases ที่เตรียมมา → เพิ่มคอลัมน์ boundary / double / data → วาดรูปร่าง suite | 25 นาที |
 | **C** | **Readiness Checklist รอบ 1** (`checklist/README.md`) — เก็บไว้เทียบตอนจบ Day 2 | 15 นาที |
 
 ส่งท้าย: แต่ละคู่เล่า **1 ข้อที่ถกกันนานที่สุด**
