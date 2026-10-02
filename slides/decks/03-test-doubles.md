@@ -113,6 +113,27 @@ SUT พึ่ง **interface** ไม่ใช่ class จริง → เร�
 
 `jest.fn()` เป็นได้ทั้ง stub, spy, mock — **ชื่อขึ้นกับว่าเราใช้มันทำอะไร** ไม่ใช่เครื่องมือ
 
+<!--
+แยกด้วย 2 คำถาม: (1) ข้อมูลไหลทางไหน — DOC → SUT หรือ SUT → DOC (รูปสไลด์ก่อน)
+                  (2) test assert กับมันไหม และเมื่อไหร่
+
+- Stub: DOC → SUT · สร้างสถานการณ์ (เขตไม่มี, DB error, 17:00) · ไม่ assert กับ stub — assert ผลของ SUT
+  expect(findById).toHaveBeenCalledWith('CM-1') = กลายเป็น mock แล้ว และมักตรวจเกิน
+- Spy: SUT → DOC · แค่จด แล้ว test ดึงมาตรวจหลัง Act — เหมาะกับ "เนื้อข้อมูล" ที่เทียบตรง ๆ ไม่ได้
+  (passwordHash สุ่ม salt → ต้อง verifyPassword) · spyOn ห่อ fake → object เดียวเป็นทั้ง fake + spy
+- Mock: SUT → DOC · "การเรียก" คือ spec — ออก token ให้ใคร / ห้ามออก token · ไม่มี state ให้ตรวจ
+  เปราะที่สุด → Fragile Test (สไลด์ "ใช้ double ให้ถูกระดับ")
+
+คำถามที่จะโดน: spy กับ mock ต่างกันยังไง?
+- Meszaros: mock ตั้ง expectation ก่อน Act แล้วตรวจเอง (fail ตอนถูกเรียก / verify()) — jMock, Mockito
+  spy แค่จด แล้ว test ตรวจหลัง Act
+- Jest: toHaveBeenCalledWith หลัง Act เป็นกลไก spy เสมอ (ตัวอย่างสไลด์ Mock ก็ด้วย)
+  → แยกด้วยเจตนา: assert "ถูกเรียกไหม / ด้วยอะไร / กี่ครั้ง" = mock · ดึง argument มาตรวจเนื้อข้อมูล = spy
+
+object เดียวหลายบทบาท: issue: jest.fn().mockReturnValue('token-123') = stub (ป้อน token) + mock (expectation)
+Lab 03 Part A ให้ comment ทุก double ว่า "แบบไหน และทำไม" → ตอบด้วย 2 คำถามนี้
+-->
+
 ---
 
 ## Dummy — ส่งให้ครบ แต่ต้องไม่ถูกใช้

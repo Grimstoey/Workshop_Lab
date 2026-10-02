@@ -85,7 +85,7 @@ $ npx jest --selectProjects unit --verbose
     ✓ rejects a malformed stored hash "" without throwing
 ```
 
-อ่าน output แล้วได้เอกสารของ `passwords.ts` ที่ **ไม่มีวันล้าสมัย** — ถ้าล้าสมัย test จะแดง
+อ่าน output แล้วได้เอกสารของ `passwords.ts` ที่สอดคล้องกับ **พฤติกรรม** — ถ้าไม่สอดคล้อง test จะแดง
 
 <!--
 ให้ดูเทียบกับ output ของ lab02-smelly: "stuff › works", "stuff › hash" — ไม่บอกอะไรเลย
@@ -202,6 +202,25 @@ expect(config.port).toBe(8080);
 </div>
 
 **Seam** = จุดที่เราเปลี่ยนพฤติกรรมได้ *โดยไม่แก้โค้ดตรงนั้น* — วันนี้เห็นแบบง่ายที่สุด, Day 2 จะเจอแบบยาก
+
+<!--
+"ลืมคืน = test อื่นพัง" — ตัวอย่าง:
+
+  it('reads PORT from the environment', () => {
+    process.env.PORT = '8080';
+    expect(loadConfig().port).toBe(8080);
+  });                                       // ลืมคืนค่า
+  it('defaults to port 3000', () => {
+    expect(loadConfig().port).toBe(3000);   // ❌ ได้ 8080
+  });
+
+- process.env เป็น global — ค่าค้างไปถึง test ถัดไปในไฟล์ (Jest แยกให้แค่ระดับไฟล์)
+- test ที่แดงไม่ใช่ test ที่ผิด · รัน -t 'defaults' ตัวเดียวผ่าน รันทั้งไฟล์พัง = Interacting Tests
+- PORT ใน shell ของเครื่องคนรันก็รั่วเข้ามาได้ → แดงแค่บางเครื่อง
+- คืนค่าต้องทำใน afterEach (expect fail ก่อน = บรรทัดคืนค่าไม่ถูกรัน) และต้อง delete
+  ห้าม process.env.PORT = undefined → Node เก็บเป็น string 'undefined' → NaN
+- ฝั่ง ✅ ไม่มี global ให้แก้ → ไม่มีอะไรต้องคืน
+-->
 
 ---
 
