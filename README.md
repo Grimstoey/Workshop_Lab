@@ -57,6 +57,6 @@ npm run db:reset:test     # สร้าง test DB ใหม่ทั้งก�
 ## Workshop นี้อิงจาก
 
 - Toby Clemson — [*Testing Strategies in a Microservice Architecture*](https://martinfowler.com/articles/microservice-testing/) (martinfowler.com)
-- Gerard Meszaros — *xUnit Test Patterns: Refactoring Test Code*
-- Steve Freeman & Nat Pryce — *Growing Object-Oriented Software, Guided by Tests*
-- Michael Feathers — *Working Effectively with Legacy Code*
+- Gerard Meszaros — [*xUnit Test Patterns: Refactoring Test Code*](http://xunitpatterns.com/)
+- Steve Freeman & Nat Pryce — [*Growing Object-Oriented Software, Guided by Tests*](https://growing-object-oriented-software.com/)
+- Michael Feathers — [*Working Effectively with Legacy Code*](https://www.informit.com/store/working-effectively-with-legacy-code-9780131177055)
