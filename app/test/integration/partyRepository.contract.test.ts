@@ -14,19 +14,21 @@ describe('PartyRepository contract', () => {
     await pool.end();
   });
 
-  describe.each([
+  const repositoryFactories: Array<[string, () => Promise<PartyRepository>]> = [
     [
       'InMemoryPartyRepository',
-      async (): Promise<PartyRepository> => new InMemoryPartyRepository(),
+      async () => new InMemoryPartyRepository(),
     ],
     [
       'PgPartyRepository',
-      async (): Promise<PartyRepository> => {
+      async () => {
         await truncateAll(pool);
         return new PgPartyRepository(pool);
       },
     ],
-  ])('%s', (_name, makeRepository) => {
+  ];
+
+  describe.each(repositoryFactories)('%s', (_name, makeRepository) => {
     let parties: PartyRepository;
 
     beforeEach(async () => {
